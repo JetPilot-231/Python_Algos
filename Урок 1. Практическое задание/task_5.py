@@ -10,3 +10,16 @@
 В обоих случаях программа должна вывести корректный результат.
 В обоих случаях он 24, но никак не -24
 """
+
+LETTER1, LETTER2 = input("Введите две буквы через пробел: ").split()
+
+print("Буква " + LETTER1 + " стоит на " + str((ord(LETTER1) - 96)) + " месте")
+print("Буква " + LETTER2 + " стоит на " + str((ord(LETTER2) - 96)) + " месте")
+if ord(LETTER1) - ord(LETTER2) == 0:
+    print("Между ними 0 букв")
+else:
+    print(
+        "Между ними " + str((ord(LETTER1) - ord(LETTER2) - 1)) + " букв"
+        if (ord(LETTER1) - ord(LETTER2)) > 0
+        else "Между ними " + str(((ord(LETTER1) - ord(LETTER2) + 1) * (-1))) + " букв"
+    )
