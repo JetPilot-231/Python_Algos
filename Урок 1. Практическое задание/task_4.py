@@ -14,3 +14,19 @@
 Функцию random() использовать можно
 Опирайтесь на пример к уроку
 """
+from random import random
+
+MIN_NUM = int(input("Введите минимальную границу диапазона чисел: "))
+MAX_NUM = int(input("Введите максимальнцю границу диапазона чисел: "))
+RAND_NUM = int(random() * (MAX_NUM - MIN_NUM + 1)) + MIN_NUM
+print(RAND_NUM)
+
+MIN_NUM = float(input("Введите минимальную границу диапазона чисел: "))
+MAX_NUM = float(input("Введите максимальнцю границу диапазона чисел: "))
+RAND_NUM = random() * (MAX_NUM - MIN_NUM) + MIN_NUM
+print(round(RAND_NUM, 3))
+
+MIN_SIM = ord(input("Введите минимальную границу диапазона символов: "))
+MAX_SIM = ord(input("Введите максимальнцю границу диапазона сиволов: "))
+RAND_SIM = int(random() * (MAX_SIM - MIN_SIM + 1)) + MIN_SIM
+print(chr(RAND_SIM))
