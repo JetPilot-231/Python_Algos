@@ -17,3 +17,18 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+
+def simbol_list(start, end):
+    """Реализачия через рекурсию и цикл одновременно)"""
+    for i in range(10):
+        if start > end:
+            break
+        print(f"{start} - {chr(start)}", end=' ')
+        start += 1
+    print()
+    if start < end:
+        simbol_list(start, end)
+
+
+simbol_list(32, 127)

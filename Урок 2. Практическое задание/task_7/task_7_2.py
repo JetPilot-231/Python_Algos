@@ -5,3 +5,23 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+import sys
+
+sys.setrecursionlimit(99999)
+
+
+def check_math(num, summ=0, i=1):
+    """Программа проверяющая равенство"""
+    summ += i
+    if i == num:
+        print(
+            f"Сумма {num} элементов равна {float(summ)}, сумма по формуле n(n+1)/2 равна "
+            f"{num * (num +1 ) / 2}")
+    else:
+        i += 1
+        check_math(num, summ, i)
+
+
+check_math(
+    int(input("Введите число для проверки равенства 1+2+...+n = n(n+1)/2: ")))

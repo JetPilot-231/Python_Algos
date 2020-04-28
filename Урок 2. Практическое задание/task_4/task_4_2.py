@@ -8,3 +8,17 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+ELEM = int(input("Введите количество элементов: "))
+
+
+def summator(elem, summ=0):
+    """Найти сумму n элементов ряда чисел"""
+    summ += float(input("Введите число: "))
+    if elem == 1:
+        print(f"Количество элементов  {ELEM}, их сумма  {round(summ, 3)}")
+    else:
+        summator(elem - 1, summ)
+
+
+summator(ELEM)

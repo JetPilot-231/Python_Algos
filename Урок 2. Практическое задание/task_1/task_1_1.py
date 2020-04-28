@@ -32,3 +32,24 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ ЦИКЛ
 """
+
+while 1:
+    OPER = input("Для сложения введите +, вычитания -, умножения *, деления /, для выхода 0): ")
+    if OPER == '0':
+        break
+    if OPER in ('+', '-', '*', '/'):
+        A = float(input("A = "))
+        B = float(input("B = "))
+        if OPER == '+':
+            print(round((A + B), 2))
+        elif OPER == '-':
+            print(round((A - B), 2))
+        elif OPER == '*':
+            print(round((A * B), 2))
+        elif OPER == '/':
+            if B != 0:
+                print(round((A / B), 2))
+            else:
+                print("Делить на ноль нельзя")
+    else:
+        print("Введите корректный операнд")
