@@ -12,3 +12,19 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+NUMBERS = int(input("Сколько будет чисел? - "))
+SEARCH_NUM = input("Какую цифру считать? - ")
+
+
+def calculate_number(qual, num, summ=0):
+    """Документация"""
+    elem = input(f"Число : ")
+    summ += elem.count(num)
+    if qual != 1:
+        calculate_number(qual - 1, num, summ)
+    else:
+        print(f"Было введено {summ} цифр '{num}'")
+
+
+calculate_number(NUMBERS, SEARCH_NUM)

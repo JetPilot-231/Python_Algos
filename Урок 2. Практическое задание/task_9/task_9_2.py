@@ -10,3 +10,23 @@
 
 ЗДЕСЬ ДОЛЖНА БЫТЬ РЕАЛИЗАЦИЯ ЧЕРЕЗ РЕКУРСИЮ
 """
+
+ELEMS = int(input("Введите количество чисел: "))
+
+
+def max_summ(elem, summ=0, num=0):
+    """Документация"""
+    tmp_num = input("Введите число: ")
+    temp_summ = 0
+    for i in tmp_num:
+        temp_summ += int(i)
+    if temp_summ > summ:
+        summ = temp_summ
+        num = tmp_num
+    if elem == 1:
+        print(f"Наибольшее число по сумме цифр: {num}, сумма его цифр: {summ}")
+    else:
+        max_summ(elem - 1, summ, num)
+
+
+max_summ(ELEMS)
