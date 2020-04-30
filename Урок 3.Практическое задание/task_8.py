@@ -36,3 +36,20 @@
 [3, 3, 3, 3, 12]
 [3, 3, 3, 3, 12]
 """
+
+MASS = []
+for i in range(5):
+    SUMM = 0
+    L = []
+    for j in range(4):
+        ELEM = int(input(f"Введите элемент [{i}, {j}]: "))
+        SUMM += ELEM
+        L.append(ELEM)
+    L.append(SUMM)
+    MASS.append(L)
+
+for i in MASS:
+    print(i)
+
+
+

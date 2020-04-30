@@ -11,3 +11,11 @@
 6 позиции, а минимальное число  -49 стоит на    0 позиции
 [-49, 26, 41, 75, 23, 52, 88, 60, 69, -18]
 """
+
+L = [88, 26, 41, 75, 23, 52, -49, 60, 69, -18]
+if L.index(min(L)) > L.index(max(L)):
+    L[L.index(min(L))], L[L.index(max(L))] = sorted(L)[-1], sorted(L)[0]
+else:
+    L[L.index(max(L))], L[L.index(min(L))] = sorted(L)[0], sorted(L)[-1]
+
+print(L)
