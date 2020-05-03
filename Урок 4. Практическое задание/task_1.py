@@ -12,3 +12,97 @@
 ВНИМАНИЕ: ЗАДАНИЯ, В КОТОРЫХ БУДУТ ГОЛЫЕ ЦИФРЫ ЗАМЕРОВ (БЕЗ АНАЛИТИКИ)
 БУДУТ ПРИНИМАТЬСЯ С ОЦЕНКОЙ УДОВЛЕТВОРИТЕЛЬНО
 """
+
+import timeit
+import random
+
+# 3.3	Сформировать из введенного числа обратное по порядку входящих в него
+# цифр и вывести на экран. Например, если введено число 3486,
+#  то надо вывести число 6843.
+
+
+def revers(num, new=''):
+    """Сформировать из введенного числа обратное"""
+    new += str(num % 10)
+    if len(str(num)) == 1:
+        return "Перевернутое число: " + new
+    else:
+        revers(num // 10, new)
+
+
+def revers_for(num):
+    """Сформировать из введенного числа обратное циклом FOR"""
+    new_num = ''
+    for i in range(len(str(num))):
+        new_num += str(num % 10)
+        num = num // 10
+    return new_num
+
+
+print(
+    timeit.timeit(
+        "revers(random.randint(1000, 10000))",
+        setup="from __main__ import revers, random",
+        number=1000))
+print(
+    timeit.timeit(
+        "revers_for(random.randint(1000, 10000))",
+        setup="from __main__ import revers_for, random",
+        number=1000))
+
+# Результаты при рекурсии ~ 0.00497 при цикле ~ 0.00368
+# Как и ожидлось цикл быстрее
+
+
+def revers2(string):
+    reversed_string = string[::-1]
+    return reversed_string
+
+
+print(
+    timeit.timeit(
+        "revers2(str(random.randint(1000, 10000)))",
+        setup="from __main__ import revers2, random",
+        number=1000))
+
+
+def revers_join(string):
+    return ''.join(reversed(string))
+
+
+print(
+    timeit.timeit(
+        "revers_join(str(random.randint(1000, 10000)))",
+        setup="from __main__ import revers_join, random",
+        number=1000))
+
+# Сделал реализацию с помомщью среза (0.00209) и с пмомощью методов join, reversed()(0.00242)
+# Срез показал наиболее хороший результат , так как пользуется встроенными
+# алгоритмами питона
+
+
+def reverse_string3(s):
+    chars = list(s)
+    for i in range(len(s) // 2):
+        tmp = chars[i]
+        chars[i] = chars[len(s) - i - 1]
+        chars[len(s) - i - 1] = tmp
+    return ''.join(chars)
+
+
+print(
+    timeit.timeit(
+        "reverse_string3(str(random.randint(1000, 10000)))",
+        setup="from __main__ import reverse_string3, random",
+        number=1000))
+
+# Добавил пример перевората с помощью цикла из учебника по питону (0.00388)
+# Он оказался медленнее чем прошлый вариант с циклом в котором мы вычисляли
+# каждый элемент и дописывали к результату Возможно из-за того, что в первом варианте
+# с каждым проходом цикла число уменьшалось на порядок
+# Если мы вписываем число для переворота больше(9 знаков вместо 4) ,
+# то последний цикл оказывается быстрее первого, так как операции происходят только на половине списка
+
+# Вывод: Самый быстрый и правильный способ это использование среза, так как он использует
+# встроенные методы питона, а так же подходит для работы с не только с числами,
+# но и с любыми строками
