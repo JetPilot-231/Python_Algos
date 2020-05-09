@@ -25,3 +25,27 @@
 
 Предприятия, с прибылью ниже среднего значения: Копыта
 """
+
+import collections
+
+COMPANY_NUMBERS = int(
+    input("Введите количество предприятий для расчета прибыли: "))
+
+COMPANY_LIST = collections.OrderedDict()
+
+for i in range(COMPANY_NUMBERS):
+    filling_out_name = input('Введите название предприятия: ')
+    filling_out_profit = input(
+        'через пробел введите прибыль данного предприятия за каждый квартал(Всего 4 квартала): ').split()
+    COMPANY_LIST[filling_out_name] = sum([int(i) for i in filling_out_profit])
+
+AVR_PROFIT = sum(COMPANY_LIST.values()) / COMPANY_NUMBERS
+print("Средняя прибыль всех предприятий " + str(round(AVR_PROFIT, 3)))
+print("Компании с прибылью меньше либо равной средней: ")
+for k, v in COMPANY_LIST.items():
+    if v <= AVR_PROFIT:
+        print(k)
+print("Компании с прибылью больше средней: ")
+for k, v in COMPANY_LIST.items():
+    if v > AVR_PROFIT:
+        print(k)
