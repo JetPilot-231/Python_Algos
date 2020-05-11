@@ -12,3 +12,84 @@
 ВНИМАНИЕ: ЗАДАНИЯ, В КОТОРЫХ БУДУТ ГОЛЫЕ ЦИФРЫ ЗАМЕРОВ (БЕЗ АНАЛИТИКИ)
 БУДУТ ПРИНИМАТЬСЯ С ОЦЕНКОЙ УДОВЛЕТВОРИТЕЛЬНО
 """
+
+import memory_profiler
+from sys import getrefcount
+import timeit
+
+# 3.3	Сформировать из введенного числа обратное по порядку входящих в него
+# цифр и вывести на экран. Например, если введено число 3486,
+#  то надо вывести число 6843.
+
+
+@memory_profiler.profile
+def revers(num, new=''):
+    """Сформировать из введенного числа обратное"""
+    new += str(num % 10)
+    if len(str(num)) == 1:
+        return new
+    else:
+        revers(num // 10, new)
+
+
+@memory_profiler.profile
+def revers_for(num):
+    """Сформировать из введенного числа обратное циклом FOR"""
+    new_num = ''
+    for i in range(len(str(num))):
+        new_num += str(num % 10)
+        num = num // 10
+    return new_num
+
+
+print(revers(1234))
+print(revers_for(1234))
+
+# Версия Python 3.7.4 Разрядность x64
+# Реализация через For лучше, так как рекурсия вызывает саму себя и храни
+# в памяти
+
+# Задание_5.	В массиве найти максимальный отрицательный элемент.
+# Вывести на экран его значение и позицию (индекс) в массиве.
+# Подсказка: максимальный отрицательный - элемент, наиболее близкий к нулю
+# Пример:
+# Базовый список: [-55, -69, -5, 72, -41, -58, -79, 58, 74, 1]
+# Максимальный отрицательный элемент в данном массиве = -5, его индекс 2
+@memory_profiler.profile
+def MyInpriter():
+    mylist = [x * x for x in range(1000000)]
+    for i in mylist:
+        print(i)
+
+
+def MyGenerator():
+    mylist = range(1000000)
+    for i in mylist:
+        yield i * i
+
+
+@memory_profiler.profile
+def PrintGen():
+    testgen = MyGenerator()
+    for i in testgen:
+        print(i)
+
+
+MyInpriter()
+PrintGen()
+
+# В таком исполнении функция PrintGen с использованием генератора занимает сктолько же
+# памяти сколько и MyInpriter с использованием итератора
+
+if __name__ == '__main__':
+
+    m1 = memory_profiler.memory_usage()
+
+    cubes = MyGenerator()
+
+    m2 = memory_profiler.memory_usage()
+
+    mem_diff = m2[0] - m1[0]
+    print(f"Выполнение MyGenerator заняло {mem_diff} Мб")
+
+# При такой проверке занимается очень мало памяти
